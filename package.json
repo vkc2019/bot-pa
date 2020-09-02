@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "pm2": "pm2 start processes.json --no-daemon"
+    "pm2": "pm2 start processes.json"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/knics-personal/telegram-bot-node#readme",
   "dependencies": {
-    "node-telegram-bot-api": "^0.50.0",
-    "pm2": "^4.4.1"
+    "pm2": "^4.4.1",
+    "telegraf": "^3.38.0"
   }
 }

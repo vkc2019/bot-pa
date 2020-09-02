@@ -1,27 +1,19 @@
-const TelegramBot = require('node-telegram-bot-api');
- 
-// replace the value below with the Telegram token you receive from @BotFather
-const token = '1306691112:AAE9i1FnvpjQkVkH2PN1Cb1EbyCJ0HvsYuk';
- 
-// Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(token, {polling: true});
- 
-// Matches "/echo [whatever]"
-bot.onText(/\/echo (.+)/, (msg, match) => {
-  // 'msg' is the received Message from Telegram
-  // 'match' is the result of executing the regexp above on the text content
-  // of the message
- 
-  const chatId = msg.chat.id;
-  const resp = match[1]; // the captured "whatever"
- 
-  // send back the matched "whatever" to the chat
-  bot.sendMessage(chatId, resp);
-});
- 
-// Listen for any kind of message. There are different kinds of
-// messages.
-bot.on('message', (msg) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, 'Just an update');
-});
+const { Telegraf } = require('telegraf')
+
+const bot = new Telegraf(process.env.BOT_PA_TOKEN)
+
+const handleHello = (ctx) => {
+  ctx.reply(`Hey ${ctx.message.from.first_name}, I am still learning.`)
+}
+
+bot.start((ctx) => ctx.reply('Welcome'))
+bot.help((ctx) => ctx.reply('Send me a sticker'))
+bot.on('sticker', (ctx) => ctx.reply('👍'))
+bot.hears('hi', (ctx) => handleHello(ctx))
+bot.hears('Hi', (ctx) => handleHello(ctx))
+bot.hears('Hey', (ctx) => handleHello(ctx))
+bot.hears('hey', (ctx) => handleHello(ctx))
+bot.hears('Hello', (ctx) => handleHello(ctx))
+bot.hears('hello', (ctx) => handleHello(ctx))
+
+bot.launch()
