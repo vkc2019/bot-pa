@@ -3,9 +3,7 @@ const { Telegraf } = require('telegraf')
 const bot = new Telegraf(process.env.BOT_PA_TOKEN)
 
 const handleHello = (ctx) => {
-  ctx.reply(`Hey ${ctx.message.from.first_name},
-This bot is deployed with CI/CD setup
-I am still learning.`)
+  ctx.reply(`Hey ${ctx.message.from.first_name}, How are you`)
 }
 
 bot.start((ctx) => ctx.reply('Welcome'))
